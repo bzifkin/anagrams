@@ -1,4 +1,5 @@
-package anagrams.algs;
+
+//package anagrams.algs;
 
 //import java.util.*;
 import java.io.IOException;
@@ -8,18 +9,24 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 /**
- *
  * @author Ben Zifkin
+ * 
+ * $$$$$$$ In order to run this on dict2 lines 25, and 34-49 must be commented out.
+ * This is true in GramNode and GramList as well
+ *
+ *
  */
 public class AnagramDriver {
 
     public static void main(String[] args) throws IOException {
-         BufferedWriter out = new BufferedWriter(new FileWriter("firstPass.txt"));
-        BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\user\\Documents\\NetBeansProjects\\Anagrams-Algs\\dict1.txt\\"));
+
+//Take in the files as arguements from command line in format: readfile writefile
+         BufferedWriter out = new BufferedWriter(new FileWriter(args[1]));
+        BufferedReader in = new BufferedReader(new FileReader(args[0]));
 
         GramList dict = new GramList();
-        dict.initializeList();
-        dict.initializeBigs();
+        dict.initializeList(); //initialize and populate both lists w/ nulls
+        dict.initializeBigs(); 
         String w;
         while ((w = in.readLine()) != null) {
 
@@ -27,27 +34,26 @@ public class AnagramDriver {
 
         }
 
-        for (GramNode gn : dict.bigs) {
-            if (gn != null) {
-                out.write("----------\n");
-                }
-            else
-                break;
-                for (Word wo : gn.anagrams) {
-                    if (wo != null) {
-                       // System.out.print(wo.value + " ");
-                        out.write(wo.value + " ");
-                        out.write("\n");
-                    }
+out.write("total anagram classes for " + args[0] + " : " + dict.totalGrams);
+       for (GramNode gn : dict.bigs) { //loop through the nodes we know to have more than five anagrams
+           if (gn != null) {             //loop through the words in the node and print them if they aren't null
+               out.write("----------\n");
+               }
+          else
+              break;
+    
+              for (Word wo : gn.anagrams) {
+                   if (wo != null) {
+                       out.write(wo.value + " ");
+                       out.write("\n");
+                   }
 
-                }
-                //System.out.println("----------");
-                
-             
-            
-        }
+               }
+                     
+       }
+
 out.flush();
 out.close();
-        System.out.println("total anagram classes " + dict.totalGrams);
+   
     }
 }

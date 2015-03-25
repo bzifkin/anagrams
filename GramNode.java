@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package anagrams.algs;
+
 
 /**
  *
@@ -11,8 +11,8 @@ package anagrams.algs;
  */
 public class GramNode {
     boolean inBigs = false; 
-
-    Word[] anagrams = new Word[10];
+   // int capacity = 100;
+   // Word[] anagrams = new Word[capacity];
     int numGrams = 0;
     char alpha;
     GramNode[] links = new GramNode[('z' - alpha) + 1];
@@ -32,19 +32,19 @@ public class GramNode {
     }
 
    
-
+/*
     public int checkAndExpand() {
-        if (numGrams + 1 >= anagrams.length) {
+        if (numGrams +5 >= capacity) {
             Word[] old = anagrams;
+		capacity = capacity *2;
+            anagrams = new Word[capacity];
 
-            anagrams = new Word[15];
-
-            for (int i = 0; i <= old.length; i++) {
+            for (int i = 0; i <= old.length-1; i++) {
                 anagrams[i] = old[i];
             }
 
         }
         return anagrams.length;
     }
-
+*/
 }
