@@ -10,7 +10,7 @@ package anagrams.algs;
  * @author user
  */
 public class GramNode {
-    boolean inBigs; 
+    boolean inBigs = false; 
 
     Word[] anagrams = new Word[10];
     int numGrams = 0;

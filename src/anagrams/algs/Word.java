@@ -16,6 +16,7 @@ public class Word {
  
 
     public Word(String value) {
+        
         if(value!=null){
         this.value = value;
         key = sorted(value);

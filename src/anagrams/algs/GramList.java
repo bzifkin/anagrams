@@ -5,6 +5,8 @@
  */
 package anagrams.algs;
 
+
+
 /**
  *
  * @author user
@@ -12,13 +14,14 @@ package anagrams.algs;
 public class GramList {
 
     public GramNode[] theList = new GramNode[26];
-    GramNode[] bigs = new GramNode[100];
+   public GramNode[] bigs = new GramNode[50];
+    
     int bigSize = 0;
     int totalGrams = 0;
 
     //public GramNode root;
     public void insert(Word w) {
-        if (w.key == null || w.key.length() == 0) {
+        if (w.key == null || w.key.length() == 0 ) {
             return;
         }
         GramNode temp = theList[w.key.charAt(0) - 97];
@@ -29,25 +32,31 @@ public class GramList {
         if (temp.numGrams == 0) {
             totalGrams++;
         }
-         if (temp.numGrams >= 5) {
-            bigs[bigSize] = temp;
-            bigSize++;
-        }
+        
         
 
         temp.anagrams[temp.numGrams] = w;
         System.out.println(w.value + " -> " + w.key + " inserted. Class Size: " + temp.numGrams);
         temp.numGrams = temp.numGrams + 1;
-
-       
-        
-
         temp.checkAndExpand();
+        
+         if (temp.numGrams >= 5 && temp.inBigs ==false) {
+            temp.inBigs = true;
+            
+            bigs[bigSize] = temp;
+            bigSize++;
+        }
     }
 
     public void initializeList() {
         for (int i = 0; i <= theList.length - 1; i++) {
             theList[i] = new GramNode();
+        }
+    }
+    
+      public void initializeBigs() {
+        for (int i = 0; i <= bigs.length - 1; i++) {
+            bigs[i] = new GramNode();
         }
     }
 
